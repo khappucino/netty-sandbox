@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+repositories {
+  mavenCentral()
+  jcenter()
+}
+
+application {
+  mainClassName = 'com.khappucino.pojopipeline.PojoPipelineServer'
+}
+
+dependencies {
+  compile group: 'io.netty', name: 'netty-all', version: netty_version
+}
+
+sourceCompatibility = 1.8

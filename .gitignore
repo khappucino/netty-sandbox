@@ -1,0 +1,17 @@
+.gradle/
+app/bin/*
+build/
+.idea/
+out/
+.project
+.classpath
+.settings/
+*.class
+*.iml
+*.swp
+__pycache__
+.DS_Store
+
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json

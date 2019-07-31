@@ -12,6 +12,7 @@ out/
 __pycache__
 .DS_Store
 
+.vscode/
 .vscode/*
 !.vscode/tasks.json
 !.vscode/launch.json

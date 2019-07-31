@@ -1,0 +1,21 @@
+{
+	"name": "Java 11",
+	"dockerFile": "Dockerfile",
+	"context": "..",
+	"extensions": [
+		"vscjava.vscode-java-pack",
+		"ms-python.python",
+		"timonwong.shellcheck",
+		"gabrielbb.vscode-lombok",
+		"ms-azuretools.vscode-docker"
+	],
+	"settings": {
+		"java.home": "/docker-java-home",
+		"remote.extensionKind": {
+			"peterjausovec.vscode-docker": "workspace"
+		}
+	},
+	"runArgs": [
+		"--volume=/var/run/docker.sock:/var/run/docker.sock",
+	]
+}

@@ -8,13 +8,18 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 import java.net.InetSocketAddress;
 
+/**
+ * PojoPipelineServer is used to build the application server and begin listening on port 8000
+ */
 public class PojoPipelineServer {
 
+  // Application entry point
   public static void main(String args[]) throws InterruptedException {
     PojoPipelineServer server = new PojoPipelineServer();
     server.start();
   }
 
+  // Starts the server and tries to bind to port 8000
   private void start() throws InterruptedException {
     NioEventLoopGroup bossGroup = new NioEventLoopGroup();
     NioEventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -24,10 +29,10 @@ public class PojoPipelineServer {
       serverBootstrap.group(bossGroup, workerGroup)
         .channel(NioServerSocketChannel.class)
         .localAddress(new InetSocketAddress("127.0.0.1", 8000))
-        .childHandler(new PojoBasePipeline())
+        .childHandler(new PojoBasePipeline()) // <---- This is the layer cake of application handlers
         .option(ChannelOption.SO_BACKLOG, 128)
         .childOption(ChannelOption.SO_KEEPALIVE, true);
-      System.out.println("Trying to bind to port 8000");
+      System.out.println("Binding to port 8000");
       ChannelFuture channelFuture = serverBootstrap.bind().sync();
       channelFuture.channel().closeFuture().sync();
     }
@@ -35,7 +40,6 @@ public class PojoPipelineServer {
       System.out.println("Something went wrong: " + e.toString());
     }
     finally {
-      System.out.println("kill bossy");
       bossGroup.shutdownGracefully().sync();
       workerGroup.shutdownGracefully().sync();
     }
